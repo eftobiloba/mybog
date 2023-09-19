@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Add Post</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="navbar">
+    <div class="container">
+        <p class="logo">PROGRAMMER'S <span>BLOG</span></p>
+        <a href="/posts" class="add">x</a>
+    </div>
+</div>
+
+<section class="addpost-form-section">
+    <div class="container">
+        <h1>Add Post</h1>
+        <p>Please fill out this form to add post</p>
+        <div class="center-this">
+            <hr>
+            <img src="{{ url_for('static', filename= 'images/avatar2.png') }}" alt="profile image">
+        </div>
+        <form action="/posts/addpost" method="POST">
+            Title: <input type="text" name="title" id="title" placeholder="Enter Title">
+            <br>
+            Post: <textarea name="content" id="content" cols="30" rows="10" placeholder="Enter content"></textarea>
+            <br>
+            Author: <input type="text" name="author" id="author" placeholder="Enter Author">
+            <br>
+            <div class="center-this">
+                <input type="submit" value="Post" class="success-btn-cta">
+            </div>
+        </form>
+        <hr>
+        <div class="footer-for-return">
+            <a href="/posts" class="cancel-btn-cta">Return</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

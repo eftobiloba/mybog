@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<Title>Posts</Title>
+{% endblock %}
+
+{% block body %}
+
+<div class="navbar">
+    <div class="container">
+        <p class="logo">PROGRAMMER'S <span>BLOG</span></p>
+        <a href="/posts/addpost" class="add">+</a>
+    </div>
+</div>
+
+<section class="head-section">
+    <div class="container">
+        <div class="left-col">
+            <h1>PROGRAMMER'S BLOG</h1>
+            <P>Welcome to the programmer's blog where your ideas are appreciated</P>
+            <div class="side-by-side">
+                <a href="/posts/addpost" class="add-new-post">+<span>Add your post</span></a>
+                <a href="" class="rate-us">Rate us</a>
+            </div>
+
+        <div class="right-col">
+            <img src="{{ url_for('static', filename= 'images/notebook.jpg') }}" alt="image of a notebook">
+        </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section class="all-posts-section">
+    <div class="container">
+        <h1>All Posts</h1>
+        <div class="first-half">
+            {% for post in posts %}
+            <div class="main-two">
+                <img src="{{ url_for('static', filename= 'images/avatar2.png') }}" alt="avatar image">
+                <h2>{{ post.title }}</h2>
+
+                {% if post.author %}
+                <p class="date-posted">Written by {{ post.author }} on {{ post.date_posted }}</p>
+                {% else %}
+                <p class="date-posted">Written by N/A on {{ post.date_posted }}</p>
+                {% endif %}
+
+                <p class="first-two-content" style="white-space: pre-wrap;">"{{ post.content }}"</p>
+                <a href="/posts/delete/{{post.id}}" class="delete-btn-cta">Delete</a>
+                <a href="/posts/edit/{{post.id}}" class="edit-btn-cta">Edit</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <hr>
+
+        <div class="hold-them">
+            <div class="second-half">
+                <img src="{{ url_for('static', filename= 'images/avatar6.png') }}" alt="avatar image">
+                <h2>{{ t_posts.title }}</h2>
+
+                {% if t_posts.author %}
+                <p class="date-posted">Written by {{ t_posts.author }} on {{ t_posts.date_posted }}</p>
+                {% else %}
+                <p class="date-posted">Written by N/A on {{ t_posts.date_posted }}</p>
+                {% endif %}
+
+                <p class="first-two-content" style="white-space: pre-wrap;">{{ t_posts.content }}</p>
+                <a href="/posts/delete/{{t_posts.id}}" class="delete-btn-cta">Delete</a>
+                <a href="/posts/edit/{{t_posts.id}}" class="edit-btn-cta">Edit</a>
+            </div>
+
+            <hr>
+
+            <div class="third-half">
+                <p class="popular-posts-title">Popular Posts</p>
+                {% for post in s_posts %}
+                <div class="each-ppost">
+                    <img src="{{ url_for('static', filename= 'images/avatar3.png') }}" alt="avatar inage">
+                    <div class="each-ppost-text">
+                        <h2>{{ post.title }}</h2>
+                        <div class="group-links">
+                            <a href="/posts/delete/{{post.id}}" class="delete-btn delete-btn-cta">Delete</a>
+                            <a href="/posts/edit/{{post.id}}" class="edit-btn edit-btn-cta">Edit</a>
+                            <a href="/posts/read/{{post.id}}" class="read-more-btn">Read More</a>
+                        </div>
+                        <p>{{ post.content[:25] }}...</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

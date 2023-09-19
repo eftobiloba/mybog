@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>View Post {{post.id}}</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="navbar">
+    <div class="container">
+        <p class="logo">PROGRAMMER'S <span>BLOG</span></p>
+        <a href="/posts" class="add">x</a>
+    </div>
+</div>
+
+<section class="read-posts-section">
+    <div class="group-half">
+        <img src="{{ url_for('static', filename= 'images/avatar3.png') }}" alt="avatar inage">
+        <h2>{{ post.title }}</h2>
+        {% if post.author %}
+        <p class="date-posted">Written by {{ post.author }} on {{ post.date_posted }}</p>
+        {% else %}
+        <p class="date-posted">Written by N/A on {{ post.date_posted }}</p>
+        {% endif %}
+        <p class="first-two-content" style="white-space: pre-wrap;">{{ post.content }}</p>
+        <a href="/posts/delete/{{post.id}}" class="delete-btn-cta">Delete</a>
+        <a href="/posts/edit/{{post.id}}" class="edit-btn-cta">Edit</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit Post</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="navbar">
+    <div class="container">
+        <p class="logo">PROGRAMMER'S <span>BLOG</span></p>
+        <a href="/posts" class="add">x</a>
+    </div>
+</div>
+
+<section class="editpost-form-section">
+    <div class="container">
+        <h1>Edit Post</h1>
+        <p>Make change to these information to edit post</p>
+
+        <hr>
+        <form action="/posts/edit/{{post.id}}" method="POST">
+            Title: <input type="text" name="title" id="title" value="{{post.title}}">
+            <br>
+            Post: <textarea name="content" id="content" cols="30" rows="10">{{post.content}}</textarea>
+            <br>
+            Author: <input type="text" name="author" id="author" value="{{post.author}}">
+            <br>
+            <div class="center-this">
+                <input type="submit" value="Save" class="success-btn-cta">
+            </div>
+        </form>
+        <hr>
+        <div class="footer-for-return">
+            <a href="/posts" class="cancel-btn-cta">Return</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
